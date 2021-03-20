@@ -12,27 +12,32 @@ const styles = {
 
     },
     item1: {
-      gridColumnStart: 20,
-      gridColumnEnd: 30,
-      gridRowStart: 40,
-      gridRowEnd: 60,
+      gridColumnStart: 1,
+      gridColumnEnd: 29,
+      gridRowStart: 10,
+      gridRowEnd: 90,
+      border: '1px solid',
+      borderRadius: '25%',
     },
     item2: {
-      gridColumnStart: 40,
+      gridColumnStart: 30,
       gridColumnEnd: 95,
-      gridRowStart: 12,
-      gridRowEnd: 87,
+      gridRowStart: 1,
+      gridRowEnd: 90,
           }
 }
 function App() {
   return (
+    <div>
+      <p className={"App-header"}> Police Butt Map</p>
     <div style={styles.flexbox} >
       <div style = {styles.item1}>
         <p> First Item!</p>
       </div>
       <div style={styles.item2}>
-        <Map style={{maxWidth: '50%', width: '50%', height: '75%', maxHeight:'75%'}}/>
+        <Map />
       </div>
+    </div>
     </div>
   );
 }
