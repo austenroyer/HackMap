@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Map from './Map'
+import React from 'react';
 const styles = {
   flexbox: {
       display: 'grid',
@@ -58,16 +59,43 @@ const styles = {
         // marginBottom:'3vh',
       }
 }
+const handleSubmit = () => {console.log("submitted!")};
 function App() {
+  const [Incident, setIncident] = React.useState('');
+  const [description, setDescription] = React.useState('');
   return (
     <div style = {{backgroundColor: '#dddddd'}}>
       <p className={"App-header"}> Police Butt Map</p>
     <div style={styles.flexbox} >
       <div style = {styles.item1}>
-        <p> Hello there, here is a tutorial for how to use this tool peepeepoopoo</p>
-        <div styles={styles.bottomHalf}>
-          <p> THere!</p>
-        </div>
+        <p style = {{height: '25%', border: '3px solid'}}> Hello there, here is a tutorial for how to use this tool peepeepoopoo</p>
+        {/* <div styles={styles.bottomHalf}> */}
+        <div >
+      <div>
+        <label>Incident</label>
+        <input
+          type="incident"
+          name="incident"
+          placeholder="Incident"
+          onChange={(e) => setIncident(e.target.value)}
+          value={Incident}
+        />
+      </div>
+      <div>
+        <label>Description</label>
+        <input
+          type="desc"
+          name="desc"
+          placeholder="Description"
+          onChange={(e) => setDescription(e.target.value)}
+          value={description}
+        />
+      </div>
+      <button onClick={handleSubmit} >
+        Submit
+      </button>
+    </div>
+        {/* </div> */}
       </div>
       <div style={styles.item2}>
         <Map style = {{      border: '5px solid #0099ff',
