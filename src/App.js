@@ -59,18 +59,68 @@ const styles = {
         // marginBottom:'3vh',
       }
 }
-const handleSubmit = () => {console.log("submitted!")};
+//41.825226, and the longitude is -71.418884. 
+var markers = [
+  {
+    lat: 41.8,
+    lng: -71.4,
+    location: 'Dennis Street',
+    incident: 'Officer Berated Me',
+    description: 'A police officer verbally berated me at a crosswalk for simply two-stepping in the middle of the road'
+
+  },
+  {
+    lat: 41.85,
+    lng: -71.5,
+    location: 'Johnnys Deli',
+    incident: 'Aggressive officer',
+    description: 'A police officer came up to me in the middle of the Deli while I was getting some food and accused me of stealing, then patted me down even though I had taken nothing'
+  }
+];
+const updatePosition = (lat, lng) => markers[markers.length-1] = {...markers[markers.length-1], lng: lng, lat: lat};
 function App() {
+  const [location, setLocation] = React.useState('');
   const [Incident, setIncident] = React.useState('');
   const [description, setDescription] = React.useState('');
+  const [dragging, setDragging] = React.useState(false);
+  // const [lat, setLat] = React.useState(41.6);
+  // const [lng, setLng] = React.useState(-71.5)
+  const handleSubmit = () => {
+    //make 
+    setDragging(true);
+    markers.push({lat: 41.6, lng: -71.5, location: location, incident: Incident, description: description});
+    setLocation('');
+    setIncident('');
+    setDescription('');
+  };
   return (
     <div style = {{backgroundColor: '#dddddd'}}>
-      <p className={"App-header"}> Police Butt Map</p>
+      <p className={"App-header"}> The rightsMap</p>
     <div style={styles.flexbox} >
       <div style = {styles.item1}>
+<<<<<<< Updated upstream
         <p style = {{height: '25%', border: '3px solid'}}></p>
+=======
+        <p style = {{height: '25%'}}> The rightsMap tool lets you see where other people in your area have reported abuse or harassment by police officers, we hope that this tool will help visualize the pervasiveness of Police Misconduct within our communities</p>
+>>>>>>> Stashed changes
         {/* <div styles={styles.bottomHalf}> */}
-        <div >
+        {dragging ?
+        <div>
+        <p>Drag the marker to approximately where the incident happened, then click OK when done</p>
+        <button onClick={()=>setDragging(false)}>OK</button>
+        </div>
+        :
+          <div >
+        <div>
+        <label>Location</label>
+        <input
+          type="loc"
+          name="loc"
+          placeholder="Location"
+          onChange={(e) => setLocation(e.target.value)}
+          value={location}
+        />
+      </div> 
       <div>
         <label>Incident</label>
         <input
@@ -91,15 +141,16 @@ function App() {
           value={description}
         />
       </div>
+    
       <button onClick={handleSubmit} >
         Submit
       </button>
-    </div>
+    </div>}
         {/* </div> */}
       </div>
       <div style={styles.item2}>
-        <Map style = {{      border: '5px solid #0099ff',
-      borderRadius: '1%',}}/>
+        <Map markers={markers} draggable={dragging} style = {{      border: '5px solid #0099ff',
+      borderRadius: '1%',}} pos={updatePosition}/>
       </div>
     </div>
     </div>
