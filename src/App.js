@@ -16,7 +16,7 @@ const styles = {
       gridRowStart: 10,
       gridRowEnd: 80,
       border: '5px solid',
-      backgroundColor: '#ffff00',
+      backgroundColor: '#60df60',
       textAlign: 'center',
       display: 'grid',
       direction: 'column',
