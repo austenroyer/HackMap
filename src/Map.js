@@ -7,8 +7,8 @@ export class MapContainer extends Component{
       <Map containerStyle={{position: 'absolute', width: '65vw', height: '85vh'}} style = {this.props.style} google={this.props.google} zoom={10} initialCenter={{lat: 41.82, lng: -71.41}} 
       >
  
-        {/* <Marker onClick={this.onMarkerClick}
-                name={'Current location'} /> */}
+       <Marker onClick={this.onMarkerClick}
+                name={'Current location'} />
  
         <InfoWindow onClose={this.onInfoWindowClose}>
             <div>

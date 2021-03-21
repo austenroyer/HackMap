@@ -68,7 +68,7 @@ function App() {
       <p className={"App-header"}> Police Butt Map</p>
     <div style={styles.flexbox} >
       <div style = {styles.item1}>
-        <p style = {{height: '25%', border: '3px solid'}}> Hello there, here is a tutorial for how to use this tool peepeepoopoo</p>
+        <p style = {{height: '25%', border: '3px solid'}}></p>
         {/* <div styles={styles.bottomHalf}> */}
         <div >
       <div>
