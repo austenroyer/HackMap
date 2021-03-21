@@ -44,7 +44,7 @@ const styles = {
     item2: {
       gridColumnStart: 33,
       gridColumnEnd: 95,
-      gridRowStart: 1,
+      gridRowStart: 5,
       gridRowEnd: 90,
     },
     title: {
@@ -57,7 +57,10 @@ const styles = {
         color: 'white',
         // marginTop: '3vh',
         // marginBottom:'3vh',
-      }
+    },
+    input: {
+      padding: '3vh'
+    },
 }
 //41.825226, and the longitude is -71.418884. 
 var markers = [
@@ -77,12 +80,24 @@ var markers = [
     description: 'A police officer came up to me in the middle of the Deli while I was getting some food and accused me of stealing, then patted me down even though I had taken nothing'
   }
 ];
+let selected = 0;
 const updatePosition = (lat, lng) => markers[markers.length-1] = {...markers[markers.length-1], lng: lng, lat: lat};
 function App() {
   const [location, setLocation] = React.useState('');
   const [Incident, setIncident] = React.useState('');
   const [description, setDescription] = React.useState('');
   const [dragging, setDragging] = React.useState(false);
+  const [display, setDisplay] = React.useState(true);
+  const trueUpdate = (sel) => {
+    if ((selected == sel)&&(!display)){
+      setDisplay(true);
+    }
+    else if (display){
+      selected = sel;
+      setDisplay(false);
+    }
+
+  };
   // const [lat, setLat] = React.useState(41.6);
   // const [lng, setLng] = React.useState(-71.5)
   const handleSubmit = () => {
@@ -94,26 +109,25 @@ function App() {
     setDescription('');
   };
   return (
-    <div style = {{backgroundColor: '#dddddd'}}>
+    <div style = {{height: '100%', backgroundColor: '#dddddd'}}>
       <p className={"App-header"}> The rightsMap</p>
     <div style={styles.flexbox} >
       <div style = {styles.item1}>
-<<<<<<< Updated upstream
-        <p style = {{height: '25%', border: '3px solid'}}></p>
-=======
-        <p style = {{height: '25%'}}> The rightsMap tool lets you see where other people in your area have reported abuse or harassment by police officers, we hope that this tool will help visualize the pervasiveness of Police Misconduct within our communities</p>
->>>>>>> Stashed changes
+
+        <p style = {{height: '25%', padding: '10px'}}> The rightsMap tool lets you see where other people in your area have reported abuse or harassment by police officers, we hope that this tool will help visualize the pervasiveness of Police Misconduct within our communities</p>
         {/* <div styles={styles.bottomHalf}> */}
-        {dragging ?
+        {display ?
+        dragging ?
         <div>
-        <p>Drag the marker to approximately where the incident happened, then click OK when done</p>
+        <p style = {styles.input}>Drag the marker to approximately where the incident happened, then click OK when done</p>
         <button onClick={()=>setDragging(false)}>OK</button>
         </div>
         :
           <div >
-        <div>
-        <label>Location</label>
+        <div style={styles.input}>
+        <label style={styles.input}>Location</label>
         <input
+         
           type="loc"
           name="loc"
           placeholder="Location"
@@ -121,8 +135,8 @@ function App() {
           value={location}
         />
       </div> 
-      <div>
-        <label>Incident</label>
+      <div style={styles.input}>
+        <label style={styles.input}>Incident</label>
         <input
           type="incident"
           name="incident"
@@ -131,8 +145,8 @@ function App() {
           value={Incident}
         />
       </div>
-      <div>
-        <label>Description</label>
+      <div style={styles.input}>
+        <label style={styles.input}>Description</label>
         <input
           type="desc"
           name="desc"
@@ -145,12 +159,18 @@ function App() {
       <button onClick={handleSubmit} >
         Submit
       </button>
+    </div>
+    :
+    <div>
+      <p style={styles.input}>{markers[selected].location}</p>
+      <p style={styles.input}>{markers[selected].incident}</p>
+      <p style={styles.input}>{markers[selected].description}</p>
     </div>}
         {/* </div> */}
       </div>
       <div style={styles.item2}>
         <Map markers={markers} draggable={dragging} style = {{      border: '5px solid #0099ff',
-      borderRadius: '1%',}} pos={updatePosition}/>
+      borderRadius: '1%',}} update={trueUpdate} pos={updatePosition}/>
       </div>
     </div>
     </div>

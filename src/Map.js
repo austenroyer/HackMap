@@ -12,20 +12,20 @@ export class MapContainer extends Component{
     let drag = this.props.draggable;
     let length = this.props.markers.length;
     const pos =this.props.pos;
+    const update = this.props.update;
+    // const display = this.props.display;
+    
     // const setLng = this.props.lng;
     // console.log(this.props.markers);
     return (
       <Map containerStyle={{position: 'absolute', width: '60vw', height: '80vh'}} style = {this.props.style} google={this.props.google} zoom={10} initialCenter={{lat: 41.82, lng: -71.41}} 
       >
-<<<<<<< Updated upstream
- 
-       <Marker onClick={this.onMarkerClick}
-                name={'Current location'} />
-=======
+
         
           {this.props.markers.map(function(item, idx){
             return(<Marker draggable={idx == length-1 ? drag : false} 
               title={item.incident} name={item.location} position={{lng: item.lng, lat: item.lat}}
+              onClick={() => update(idx)}
               onDragend={( map, coord) => {//let coord = e.nativeEvent.coordinate;
                                 //  console.log( map, coord);
                                 // const latLng = {coord};
@@ -38,9 +38,7 @@ export class MapContainer extends Component{
           }) }
           
         
-      
->>>>>>> Stashed changes
- 
+
         <InfoWindow onClose={this.onInfoWindowClose}>
             <div>
               <h1>HIII</h1>
