@@ -69,7 +69,15 @@ var markers = [
     lng: -71.4,
     location: 'Dennis Street',
     incident: 'Officer Berated Me',
-    description: 'A police officer verbally berated me at a crosswalk for simply two-stepping in the middle of the road'
+    description: 'A police officer verbally berated me at a crosswalk for crossing the road while the light was blue and I was good to cross, simply because he had to stop to let me cross'
+
+  },
+  {
+    lat: 41.92,
+    lng: -71.55,
+    location: 'Kenny  Junction',
+    incident: 'Verbally Reprimanded for speaking Chinese',
+    description: 'I was speaking Mandarin to my mother on the sidewalk when a police officer walking by yelled at us to "Speak English!"'
 
   },
   {
@@ -110,7 +118,7 @@ function App() {
   };
   return (
     <div style = {{height: '100%', backgroundColor: '#dddddd'}}>
-      <p className={"App-header"}> The rightsMap</p>
+      <p className={"App-header"}> rightsMap</p>
     <div style={styles.flexbox} >
       <div style = {styles.item1}>
 
